@@ -137,12 +137,19 @@ Open `heart.ipynb` and choose **Kernel → Restart & Run All**. This regenerates
 
 ## 📊 Model Performance
 
-| Metric | Score |
-|---|---|
-| Accuracy | XX% |
-| Precision | XX% |
-| Recall | XX% |
-| F1-score | XX% |
+## 📊 Model Performance
+
+Five classifiers were trained on the scaled data and compared on a held-out test set:
+
+| Model | Accuracy | F1-score |
+|---|---:|---:|
+| Logistic Regression | 85.87% | 87.38% |
+| **K-Nearest Neighbors (deployed)** | **85.33%** | **87.08%** |
+| Naive Bayes | 84.78% | 86.14% |
+| SVM | 84.78% | 86.79% |
+| Decision Tree | 80.98% | 83.09% |
+
+The app uses the **KNN** model. Logistic Regression scored slightly higher, by about half a percentage point, so the two models perform very similarly on this dataset.
 
 > Replace the values above with the results from `heart.ipynb`.
 
@@ -168,7 +175,7 @@ Open `heart.ipynb` and choose **Kernel → Restart & Run All**. This regenerates
 
 **Ayush**
 
-- GitHub: [@your-username](https://github.com/your-username)
+- GitHub: [@Ayush-prajapati79](https://github.com/your-username)
 
 ---
 
