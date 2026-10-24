@@ -5,7 +5,7 @@
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-KNN-F7931E?logo=scikit-learn&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-A machine learning web app that predicts whether a person has a **high or low risk of heart disease** from basic clinical details. The model is a **K-Nearest Neighbors (KNN)** classifier trained in a Jupyter notebook and served through an interactive **Streamlit** interface.
+A machine learning web app that predicts whether a person has a **high or low risk of heart disease** from basic clinical details. Several classifiers were compared in a Jupyter notebook, and the **K-Nearest Neighbors (KNN)** model is served through an interactive **Streamlit** interface.
 
 ---
 
@@ -26,7 +26,7 @@ A machine learning web app that predicts whether a person has a **high or low ri
 - Clean, interactive form built with Streamlit (sliders, dropdowns and number inputs)
 - Instant prediction with a clear **Low Risk / High Risk** result
 - Input scaling and column alignment handled by saved preprocessing artifacts, so predictions match the training pipeline
-- Full model-building workflow documented in a Jupyter notebook
+- Full model-building and comparison workflow documented in a Jupyter notebook
 
 ---
 
@@ -53,7 +53,7 @@ A machine learning web app that predicts whether a person has a **high or low ri
 - **Language:** Python 3.11
 - **Data analysis:** Pandas, NumPy
 - **Visualization:** Matplotlib, Seaborn
-- **Machine learning:** scikit-learn (KNN, StandardScaler)
+- **Machine learning:** scikit-learn (KNN, Logistic Regression, Naive Bayes, SVM, Decision Tree, StandardScaler)
 - **Model persistence:** Joblib
 - **Web app:** Streamlit
 
@@ -62,13 +62,13 @@ A machine learning web app that predicts whether a person has a **high or low ri
 ## 📁 Project Structure
 
 ```
-HEART PROJECT/
+heart-disease-prediction-streamlit/
 ├── screenshots/          # Images used in this README
 │   ├── app-form.png
 │   ├── low-risk.png
 │   └── high-risk.png
 ├── app.py                # Streamlit web application
-├── heart.ipynb           # Data analysis and model training notebook
+├── heart.ipynb           # Data analysis, model training and comparison
 ├── heart.csv             # Dataset
 ├── KNN_heart.pkl         # Trained KNN model
 ├── scaler.pkl            # Fitted scaler used for input scaling
@@ -84,9 +84,25 @@ HEART PROJECT/
 
 1. **Data preparation:** the dataset is cleaned and categorical features are one-hot encoded.
 2. **Scaling:** numerical features are standardized with a scaler fitted on the training data.
-3. **Model training:** a KNN classifier is trained and evaluated in `heart.ipynb`.
+3. **Model training:** several classifiers are trained and compared in `heart.ipynb`, and KNN is saved for the app.
 4. **Saving artifacts:** the model, scaler and column list are saved as `.pkl` files.
 5. **Prediction:** `app.py` collects user input, encodes it, aligns it to the saved columns, scales it and runs the model to show the result.
+
+---
+
+## 📊 Model Performance
+
+Five classifiers were trained on the scaled data and compared on a held-out test set:
+
+| Model | Accuracy | F1-score |
+|---|---:|---:|
+| Logistic Regression | 85.87% | 87.38% |
+| **K-Nearest Neighbors (deployed)** | **85.33%** | **87.08%** |
+| Naive Bayes | 84.78% | 86.14% |
+| SVM | 84.78% | 86.79% |
+| Decision Tree | 80.98% | 83.09% |
+
+The app uses the **KNN** model. Logistic Regression scored slightly higher, by about half a percentage point, so the two models perform very similarly on this dataset.
 
 ---
 
@@ -101,8 +117,8 @@ HEART PROJECT/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/heart-disease-prediction.git
-cd heart-disease-prediction
+git clone https://github.com/Ayush-prajapati79/heart-disease-prediction-streamlit.git
+cd heart-disease-prediction-streamlit
 
 # 2. Create and activate a virtual environment
 python -m venv venv
@@ -135,26 +151,6 @@ Open `heart.ipynb` and choose **Kernel → Restart & Run All**. This regenerates
 
 ---
 
-## 📊 Model Performance
-
-## 📊 Model Performance
-
-Five classifiers were trained on the scaled data and compared on a held-out test set:
-
-| Model | Accuracy | F1-score |
-|---|---:|---:|
-| Logistic Regression | 85.87% | 87.38% |
-| **K-Nearest Neighbors (deployed)** | **85.33%** | **87.08%** |
-| Naive Bayes | 84.78% | 86.14% |
-| SVM | 84.78% | 86.79% |
-| Decision Tree | 80.98% | 83.09% |
-
-The app uses the **KNN** model. Logistic Regression scored slightly higher, by about half a percentage point, so the two models perform very similarly on this dataset.
-
-> Replace the values above with the results from `heart.ipynb`.
-
----
-
 ## ⚠️ Important Notes
 
 - The `.pkl` files are tied to the scikit-learn version they were created with. Install the versions in `requirements.txt` to load them correctly.
@@ -164,8 +160,8 @@ The app uses the **KNN** model. Logistic Regression scored slightly higher, by a
 
 ## 🔮 Future Improvements
 
-- Compare KNN with other models (Logistic Regression, Random Forest, XGBoost)
-- Add hyperparameter tuning and cross-validation
+- Tune hyperparameters with `GridSearchCV` and use cross-validation
+- Try ensemble models such as Random Forest and XGBoost
 - Show prediction probability alongside the label
 - Deploy the app on Streamlit Community Cloud
 
@@ -173,9 +169,9 @@ The app uses the **KNN** model. Logistic Regression scored slightly higher, by a
 
 ## 👤 Author
 
-**Ayush**
+**Ayush Prajapati**
 
-- GitHub: [@Ayush-prajapati79](https://github.com/your-username)
+- GitHub: [@Ayush-prajapati79](https://github.com/Ayush-prajapati79)
 
 ---
 
